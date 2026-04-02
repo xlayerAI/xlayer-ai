@@ -1,0 +1,16 @@
+Reconnaissance involves collecting data about the target.
+Common tools include Nmap, Sublist3r, and Amass.
+Phishing attacks can be detected using machine learning.
+Always sanitize user input to prevent SQL Injection.
+A CVE is a Common Vulnerability and Exposure identifier.
+The command `nmap -sV target.com` detects open services.
+Cybersecurity awareness is critical in defending against threats.
+
+Use strong passwords with a password manager.
+Never click unknown links in emails.
+CVE-2023-9999 affects Apache Tomcat.
+Use fail2ban for brute-force protection.Phishing attacks trick users into revealing credentials.
+SQL Injection targets vulnerable database queries.
+CVE-2023-0001 allows privilege escalation in Linux.
+XSS exploits execute malicious scripts in browsers.
+...

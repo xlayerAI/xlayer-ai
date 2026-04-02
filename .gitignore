@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+pip-log.txt
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+secrets/
+
+# Node / frontend
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnpm-store/
+.next/
+out/
+.nuxt/
+.turbo/
+
+# IDE & local tools
+.idea/
+*.swp
+*.swo
+.cursor/
+.claude/
+
+# OS / Windows reserved-name accidents
+Thumbs.db
+Desktop.ini
+.DS_Store
+nul
+**/nul
+
+# Logs & temp
+*.log
+tmp/
+temp/
+.cache/
+
+# Optional large ML / binary artifacts (un-ignore in repo if you version specific small files)
+*.pt
+*.pth
+*.onnx
+*.safetensors

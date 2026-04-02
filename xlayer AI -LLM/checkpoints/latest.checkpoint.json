@@ -1,0 +1,9 @@
+import json
+
+checkpoint_meta = {
+    "latest_model": "model_step_1000.pt",
+    "step": 1000,
+    "loss": 1.23
+}
+with open("checkpoints/latest_checkpoint.json", "w") as f:
+    json.dump(checkpoint_meta, f)
