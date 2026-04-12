@@ -43,6 +43,7 @@ train_llm: Optional[ModuleType] = _safe_import("train_llm")
 inference: Optional[ModuleType] = _safe_import("inference")
 evaluate: Optional[ModuleType] = _safe_import("evaluate")
 utils: Optional[ModuleType] = _safe_import("utils")
+datagen: Optional[ModuleType] = _safe_import("datagen")
 
 
 # ---- Logger convenience export ----------------------------------------------
@@ -82,6 +83,7 @@ __all__ = [
     "inference",
     "evaluate",
     "utils",
+    "datagen",
     "get_logger",
     "__version__",
 ]
@@ -104,4 +106,5 @@ def available_modules() -> Dict[str, bool]:
         "inference": inference is not None,
         "evaluate": evaluate is not None,
         "utils": utils is not None,
+        "datagen": datagen is not None,
     }
